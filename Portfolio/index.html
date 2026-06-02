@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>BSIT Portfolio — Lilac.exe</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>:root{
+  --bg:#15101e;
+  --bg-2:#1d1530;
+  --panel:#221a37;
+  --panel-2:#2a2046;
+  --lilac:#c8a8ff;
+  --lilac-2:#a87bff;
+  --lilac-3:#7a4ee0;
+  --lilac-soft:#e9dcff;
+  --ink:#f3edff;
+  --muted:#a596c4;
+  --border:rgba(200,168,255,.18);
+  --grad:linear-gradient(135deg,#c8a8ff 0%,#a87bff 50%,#7a4ee0 100%);
+  --shadow:0 18px 60px -20px rgba(122,78,224,.55);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:'Space Grotesk',system-ui,sans-serif;
+  background:
+    radial-gradient(1000px 600px at 80% -10%,rgba(168,123,255,.25),transparent 60%),
+    radial-gradient(900px 500px at -10% 30%,rgba(200,168,255,.18),transparent 60%),
+    var(--bg);
+  color:var(--ink);
+  overflow-x:hidden;
+}
+.mono{font-family:'JetBrains Mono',monospace}
+.accent{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+code{color:var(--lilac);background:rgba(200,168,255,.1);padding:2px 6px;border-radius:6px}
+
+/* NAV */
+.glass-nav{
+  backdrop-filter:blur(16px);
+  background:rgba(21,16,30,.7);
+  border-bottom:1px solid var(--border);
+  padding:.75rem 0;
+}
+.brand{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--ink);font-size:1.05rem;display:flex;align-items:center;gap:.5rem}
+.brand .dot{width:10px;height:10px;border-radius:50%;background:var(--grad);box-shadow:0 0 14px var(--lilac-2)}
+.navbar-nav .nav-link{
+  color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:.9rem;
+  padding:.4rem .75rem;border-radius:8px;transition:.25s
+}
+.navbar-nav .nav-link:hover{color:var(--ink);background:rgba(200,168,255,.08)}
+.navbar-toggler{border-color:var(--border)}
+.navbar-toggler-icon{filter:invert(.8) hue-rotate(220deg)}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:8rem 0 4rem;overflow:hidden}
+.grid-bg{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(200,168,255,.06) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(200,168,255,.06) 1px,transparent 1px);
+  background-size:48px 48px;
+  mask-image:radial-gradient(ellipse at 50% 40%,black 30%,transparent 75%);
+}
+.hero-inner{position:relative;z-index:2;max-width:900px}
+.terminal-chip{
+  display:inline-flex;align-items:center;gap:.4rem;
+  background:var(--panel);border:1px solid var(--border);
+  padding:.4rem .9rem;border-radius:999px;margin-bottom:1.5rem;
+  font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--muted)
+}
+.led{width:9px;height:9px;border-radius:50%}
+.led.red{background:#ff6b6b}.led.yellow{background:#ffd166}.led.green{background:#7cf6a5}
+.term-title{margin-left:.5rem}
+.hero-title{
+  font-size:clamp(2.4rem,6vw,4.8rem);
+  font-weight:700;line-height:1.05;letter-spacing:-.02em;margin-bottom:1.2rem
+}
+.grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.caret{display:inline-block;animation:blink 1s steps(1) infinite;color:var(--lilac)}
+@keyframes blink{50%{opacity:0}}
+.hero-sub{color:var(--muted);font-size:1.05rem;margin-bottom:2rem}
+.hero-cta{display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:3rem}
+.btn-lilac{
+  background:var(--grad);color:#1a1029;font-weight:600;
+  border:none;padding:.75rem 1.5rem;border-radius:12px;
+  box-shadow:var(--shadow);transition:.25s
+}
+.btn-lilac:hover{transform:translateY(-2px);box-shadow:0 22px 50px -15px rgba(168,123,255,.7);color:#1a1029}
+.btn-ghost{
+  background:transparent;border:1px solid var(--border);color:var(--ink);
+  padding:.75rem 1.5rem;border-radius:12px;font-family:'JetBrains Mono',monospace;font-size:.95rem
+}
+.btn-ghost:hover{background:rgba(200,168,255,.08);color:var(--ink)}
+.hero-stats{display:flex;gap:2.5rem;flex-wrap:wrap;border-top:1px solid var(--border);padding-top:1.5rem}
+.hero-stats div{display:flex;flex-direction:column}
+.hero-stats b{font-size:1.6rem;color:var(--lilac)}
+.hero-stats span{font-size:.8rem;color:var(--muted)}
+
+/* SECTIONS */
+.section{padding:6rem 0;position:relative}
+.section.alt{background:linear-gradient(180deg,transparent,rgba(168,123,255,.04),transparent)}
+.section-head{margin-bottom:3rem}
+.section-head.center{text-align:center}
+.tag{color:var(--lilac-2);font-size:.85rem;letter-spacing:.1em;text-transform:uppercase}
+.section-head h2{
+  font-size:clamp(2rem,4vw,3rem);font-weight:700;letter-spacing:-.02em;margin:.4rem 0 0
+}
+.section-head .lead{color:var(--muted);max-width:560px;margin:1rem auto 0}
+.small-h{color:var(--lilac);font-size:.95rem;margin-bottom:1rem}
+
+/* CARDS */
+.card-lilac{
+  background:var(--panel);border:1px solid var(--border);
+  border-radius:20px;padding:1.75rem;
+  position:relative;overflow:hidden
+}
+.card-lilac::before{
+  content:'';position:absolute;inset:-1px;border-radius:20px;
+  background:linear-gradient(135deg,rgba(200,168,255,.3),transparent 40%);
+  pointer-events:none;mask:linear-gradient(#000,#000) content-box,linear-gradient(#000,#000);
+  -webkit-mask-composite:xor;mask-composite:exclude;padding:1px
+}
+
+.project-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+
+    padding:12px 24px;
+
+    background:linear-gradient(
+        135deg,
+        #64fff5,
+        #7f7cff
+    );
+
+    color:#04111f;
+    font-weight:600;
+    text-decoration:none;
+
+    border-radius:14px;
+
+    transition:all .35s ease;
+
+    box-shadow:
+    0 0 15px rgba(100,255,245,.3);
+
+    position:relative;
+    overflow:hidden;
+}
+
+.project-btn::before{
+    content:'';
+
+    position:absolute;
+    top:0;
+    left:-100%;
+
+    width:100%;
+    height:100%;
+
+    background:
+    linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.4),
+        transparent
+    );
+
+    transition:.6s;
+}
+
+.project-btn:hover::before{
+    left:100%;
+}
+
+.project-btn:hover{
+    transform:translateY(-5px);
+
+    box-shadow:
+    0 0 25px rgba(100,255,245,.6);
+}
+.card-lilac p{color:var(--muted);line-height:1.7}
+
+/* TIMELINE */
+.timeline{list-style:none;padding:0;margin:0;position:relative}
+.timeline::before{content:'';position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--lilac-2),transparent)}
+.timeline li{position:relative;padding-left:2rem;margin-bottom:1.5rem}
+.timeline li::before{content:'';position:absolute;left:0;top:6px;width:16px;height:16px;border-radius:50%;background:var(--grad);box-shadow:0 0 0 4px rgba(168,123,255,.15)}
+.timeline .t-year{font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--lilac);text-transform:uppercase;letter-spacing:.08em}
+.timeline h4{margin:.3rem 0 .2rem;font-size:1.05rem}
+.timeline p{margin:0;color:var(--muted);font-size:.92rem}
+
+/* ID CARD */
+.id-card{text-align:center;background:linear-gradient(160deg,var(--panel-2),var(--panel))}
+.id-header{display:flex;justify-content:space-between;color:var(--muted);font-size:.78rem;margin-bottom:1.25rem}
+.status{color:#7cf6a5;font-family:'JetBrains Mono',monospace}
+.avatar{position:relative;width:120px;height:120px;margin:0 auto 1rem;display:grid;place-items:center}
+.avatar-ring{position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,var(--lilac),var(--lilac-3),var(--lilac));animation:spin 8s linear infinite;padding:3px}
+.avatar-ring::after{content:'';position:absolute;inset:3px;border-radius:50%;background:var(--panel-2)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.avatar-img{
+    position: relative;
+    z-index: 1;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.avatar-emoji{position:relative;font-size:3.4rem;z-index:1}
+.id-name{font-size:1.4rem;font-weight:700;margin-bottom:.2rem}
+.id-role{color:var(--lilac);font-size:.85rem;margin-bottom:1.25rem}
+.id-list{list-style:none;padding:0;margin:0 0 1.25rem;text-align:left;font-size:.88rem;color:var(--muted)}
+.id-list li{padding:.35rem 0;border-bottom:1px dashed var(--border);display:flex;gap:.7rem}
+.id-list li:last-child{border-bottom:none}
+.id-barcode{
+  height:36px;
+  background:repeating-linear-gradient(90deg,var(--lilac) 0 2px,transparent 2px 4px,var(--lilac) 4px 5px,transparent 5px 9px,var(--lilac) 9px 11px,transparent 11px 14px);
+  opacity:.7;border-radius:6px
+}
+
+/* SKILL CARDS */
+.skill-card{
+  background:var(--panel);border:1px solid var(--border);border-radius:20px;
+  padding:1.75rem;height:100%;transition:.3s
+}
+.skill-card:hover{transform:translateY(-4px);border-color:var(--lilac-2);box-shadow:var(--shadow)}
+.skill-ico{font-size:2rem;margin-bottom:.75rem}
+.skill-card h4{margin-bottom:1rem;font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:.4rem}
+.chips span{
+  background:rgba(200,168,255,.1);color:var(--lilac-soft);
+  border:1px solid var(--border);padding:.3rem .7rem;border-radius:999px;
+  font-family:'JetBrains Mono',monospace;font-size:.78rem
+}
+.bar{margin-bottom:1.1rem}
+.bar span{display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:var(--muted);margin-bottom:.4rem}
+.track{height:8px;background:var(--panel);border-radius:99px;overflow:hidden;border:1px solid var(--border)}
+.track i{display:block;height:100%;background:var(--grad);border-radius:99px}
+
+/* PROJECTS */
+.proj{
+  background:var(--panel);border:1px solid var(--border);border-radius:20px;
+  padding:1.5rem;height:100%;transition:.3s;cursor:pointer
+}
+.proj:hover{transform:translateY(-6px);border-color:var(--lilac-2);box-shadow:var(--shadow)}
+.proj-thumb{
+  height:140px;border-radius:14px;margin-bottom:1rem;
+  display:grid;place-items:center;font-size:1.5rem;color:#1a1029;font-weight:700;
+  position:relative;overflow:hidden
+}
+.proj-thumb::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.1) 1px,transparent 1px);background-size:8px 8px;opacity:.4}
+.thumb-1{background:linear-gradient(135deg,#c8a8ff,#a87bff)}
+.thumb-2{background:linear-gradient(135deg,#a87bff,#7a4ee0)}
+.thumb-3{background:linear-gradient(135deg,#e9dcff,#c8a8ff)}
+.thumb-4{background:linear-gradient(135deg,#7a4ee0,#4a2db0)}
+.thumb-5{background:linear-gradient(135deg,#d4b8ff,#9264ec)}
+.thumb-6{background:linear-gradient(135deg,#2a2046,#7a4ee0);border:1px dashed var(--lilac)}
+.proj h4{font-weight:700;margin-bottom:.4rem}
+.proj p{color:var(--muted);font-size:.92rem;line-height:1.6;margin-bottom:1rem}
+.proj-tags{display:flex;gap:.4rem;flex-wrap:wrap}
+.proj-tags span{background:rgba(200,168,255,.12);color:var(--lilac);font-size:.72rem;padding:.25rem .6rem;border-radius:6px}
+
+/* CONTACT */
+.contact-form{max-width:680px;margin-top:2rem}
+.form-control{
+  background:var(--panel);border:1px solid var(--border);color:var(--ink);
+  border-radius:12px;padding:.85rem 1rem;font-family:'JetBrains Mono',monospace;font-size:.92rem
+}
+.form-control:focus{background:var(--panel-2);border-color:var(--lilac-2);box-shadow:0 0 0 4px rgba(168,123,255,.15);color:var(--ink)}
+.form-control::placeholder{color:var(--muted)}
+.sent{color:#7cf6a5;display:none}
+.sent.show{display:block}
+.socials{text-align:center;margin-top:3rem;color:var(--muted)}
+.socials a{color:var(--lilac);text-decoration:none;margin:0 .3rem}
+.socials a:hover{color:var(--ink)}
+
+/* FOOTER */
+.foot{padding:2rem 0;border-top:1px solid var(--border);color:var(--muted);font-size:.82rem;margin-top:2rem}
+
+/* STICKERS - floating BSIT-themed */
+.stickers{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+.sticker{
+  position:absolute;display:inline-block;
+  font-family:'JetBrains Mono',monospace;font-weight:700;font-size:.85rem;
+  padding:.45rem .85rem;border-radius:12px;
+  background:var(--lilac-soft);color:#3a1f7a;
+  border:2px solid #3a1f7a;
+  box-shadow:3px 3px 0 #3a1f7a;
+  animation:float 8s ease-in-out infinite;
+  opacity:.85;
+}
+.sticker.s1{top:12%;left:5%;transform:rotate(-8deg);background:#ffd166;animation-delay:0s}
+.sticker.s2{top:25%;right:6%;transform:rotate(10deg);background:#c8a8ff;animation-delay:1s}
+.sticker.s3{top:48%;left:3%;transform:rotate(-12deg);background:#7cf6a5;animation-delay:2s}
+.sticker.s4{top:62%;right:4%;transform:rotate(6deg);background:#ff9ed8;animation-delay:1.5s}
+.sticker.s5{top:78%;left:7%;transform:rotate(-5deg);background:#a87bff;color:#fff;animation-delay:.5s}
+.sticker.s6{top:88%;right:8%;transform:rotate(8deg);background:#ffd166;animation-delay:2.5s}
+.sticker.s7{top:35%;left:48%;transform:rotate(-15deg);background:#ff6b6b;color:#fff;animation-delay:3s;font-size:.75rem}
+.sticker.s8{top:8%;right:30%;transform:rotate(5deg);background:#e9dcff;animation-delay:1.2s}
+.sticker.s9{top:55%;right:35%;transform:rotate(-7deg);background:#7cf6a5;animation-delay:2.2s}
+.sticker.s10{top:70%;left:38%;transform:rotate(9deg);background:#ffd166;animation-delay:.8s}
+@keyframes float{
+  0%,100%{translate:0 0}
+  50%{translate:0 -14px}
+}
+@media (max-width:768px){
+  .sticker{font-size:.7rem;padding:.3rem .6rem}
+  .sticker.s7,.sticker.s9,.sticker.s10{display:none}
+}
+</style>
+</head>
+<body>
+
+
+<!-- NAV -->
+<nav class="navbar navbar-expand-lg fixed-top glass-nav">
+  <div class="container">
+    <a class="navbar-brand brand" href="#home">
+      <span class="dot"></span> Jean <span class="accent">Batoon</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav ms-auto gap-lg-2">
+        <li class="nav-item"><a class="nav-link" href="#home">HOME</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">ABOUT</a></li>
+        <li class="nav-item"><a class="nav-link" href="#skills">SKILLS</a></li>
+        <li class="nav-item"><a class="nav-link" href="#projects">PROJECTS</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">CONTACT</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HOME / HERO -->
+<header id="home" class="hero">
+  <div class="grid-bg"></div>
+  <div class="container hero-inner">
+    <div class="terminal-chip">
+      <span class="led red"></span><span class="led yellow"></span><span class="led green"></span>
+      <span class="term-title">My Portfolio</span>
+    </div>
+    <h1 class="hero-title">
+      Hello,<span class="caret">_</span><br/>
+      <span class="grad">I'm Jean Batoon</span>
+    </h1>
+    <p class="hero-sub mono">
+      &gt; BSIT student · full-stack overthinker ·
+    </p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-lilac">view projects →</a>
+      <a href="#contact" class="btn btn-ghost">get in touch →</a>
+    </div>
+    <div class="hero-stats mono">
+      <div><b>1+</b><span>yrs coding</span></div>
+      <div><b>2+</b><span>projects shipped</span></div>
+    
+    </div>
+  </div>
+</header>
+
+<!-- ABOUT -->
+<section id="about" class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="tag mono">// 01</span>
+      <h2>about<span class="accent">.me</span></h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-7">
+        <div class="card-lilac">
+          <h3 class="mono small-h">Who am I?</h3>
+          <p>
+             I am a BSIT student who is eager to learn and grow in the field of Information Technology. I enjoy exploring new technologies, 
+          improving my skills, and gaining knowledge through different projects and experiences. I am committed to continuous learning to prepare for
+         my future career in the IT industry.
+
+          </p>
+        </div>
+
+        <div class="card-lilac mt-4">
+          <h3 class="mono small-h">Educational Background</h3>
+          <ul class="timeline">
+            <li>
+              <span class="t-year">2026 – Present</span>
+              <h4>BS in Information Technology</h4>
+              <p>Davao Del Norte Stage College </p>
+            </li>
+            <li>
+              <span class="t-year">2024 – 2025</span>
+              <h4>Senior High School — TVL/AGRICULTURE Strand</h4>
+              <p>With Honors</p>
+              <p>Agriculture- NC II Passer</p>
+              
+            </li>
+            <li>
+              <span class="t-year">2022 – 2023</span>
+              <h4>Junior High School</h4>
+              <p>With Honors</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-lg-5">
+        <div class="card-lilac id-card">
+          <div class="id-header">
+            <span class="mono">student_id.jean</span>
+            <span class="status">● online</span>
+          </div>
+          <div class="avatar">
+    <div class="avatar-ring"></div>
+    <img src="profile.jpg"
+         alt="Jean Batoon"
+         class="avatar-img">
+</div>
+          <h3 class="id-name">Jean Batoon</h3>
+          <p class="id-role mono">BSIT · 1st Year </p>
+          <ul class="id-list mono">
+            <li><span>📍</span> Davao Del Norte, Philippines</li>
+            <li><span>🎂</span> 19 years old</li>
+            <li><span>🗣</span>   Filipino · Cebuano</li>
+            <li><span>🎧</span> Taylor Swift</li>
+            <li><span>☕</span> iced latte, always</li>
+          </ul>
+          <div class="id-barcode"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="section alt">
+  <div class="container">
+    <div class="section-head">
+      <span class="tag mono">// 02</span>
+      <h2>toolkit<span class="accent"> & skills</span></h2>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="skill-card">
+          <div class="skill-ico">🎨</div>
+          <h4>Frontend</h4>
+          <div class="chips">
+            <span>HTML5</span><span>CSS</span><span>Bootstrap</span>
+            <span>JavaScript</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="skill-card">
+          <div class="skill-ico">⚙️</div>
+          <h4>Backend</h4>
+          <div class="chips">
+            <span>MySQL</span> <span>Java</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="skill-card">
+          <div class="skill-ico">🧰</div>
+          <h4>Tools</h4>
+          <div class="chips">
+            <span>Git</span><span>VS Code</span>
+            <span>XAMPP</span><span>NetBeans</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="mono small-h mt-5">proficiency --list</h3>
+    <div class="row g-4 mt-1">
+      <div class="col-md-6">
+        <div class="bar"><span>Web Development</span><div class="track"><i style="width:83%"></i></div></div>
+        <div class="bar"><span>UI / UX Design</span><div class="track"><i style="width:86%"></i></div></div>
+        <div class="bar"><span>Database Management</span><div class="track"><i style="width:80%"></i></div></div>
+      </div>
+      <div class="col-md-6">
+        <div class="bar"><span>Problem Solving</span><div class="track"><i style="width:79%"></i></div></div>
+        <div class="bar"><span>Networking Basics</span><div class="track"><i style="width:70%"></i></div></div>
+        <div class="bar"><span>Project Management</span><div class="track"><i style="width:75%"></i></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="tag mono">// 03</span>
+      <h2>projects<span class="accent">/</span></h2>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-lg-4 col-md-6">
+        <article class="proj">
+          <img src="Enroll.png" alt="Enrollment System" class="proj-thumb thumb-1">
+          <h4>Enrollment Management System</h4>
+          <div class="proj-tags mono"><span>Java</span><span>MSQL</span></div>
+           <a href="https://github.com/batoonjean-blip/Enrollment-System"
+            target="_blank"
+            class="project-btn mt-3">
+            View Repository
+          </a>
+        </article>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <article class="proj">
+          <img src="Yogu.png" width="200px" alt="Yogu Website" class="proj-thumb thumb-1">
+          <h4>Yogu Website</h4>
+          <div class="proj-tags mono"><span>HTML</span><span>CSS</span><span>Bootstrap</span></div>
+         <a href="https://github.com/batoonjean-blip/Yogu-Website"
+            target="_blank"
+            class="project-btn mt-5">
+            View Repository
+          </a>
+        </article>
+      </div>
+  </div>
+</section>
+
+
+<!-- CONTACT -->
+<section id="contact" class="section contact">
+  <div class="container">
+    <div class="section-head center">
+      <span class="tag mono">// 05</span>
+      <h2>let's <span class="accent">connect</span></h2>
+      <p class="lead">
+        Got a project, internship, or just want to chat? Feel free to contact me.
+      </p>
+    </div>
+
+    <div class="row g-4 align-items-start">
+
+      <!-- Contact Information -->
+      <div class="col-lg-5">
+        <div class="card-lilac h-100">
+          <h3 class="mono text-center mb-4">Contact Information</h3>
+
+          <div class="mb-4">
+            <h5>📧 Email</h5>
+            <p class="mb-0">
+              jeanbatoon@gmail.com
+            </p>
+          </div>
+
+          <div class="mb-4">
+            <h5>📱 Phone</h5>
+            <p class="mb-0">
+              +63 907 634 4317
+            </p>
+          </div>
+
+          <div>
+            <h5>📍 Location</h5>
+            <p class="mb-0">
+              Davao del Norte, Philippines
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="col-lg-7">
+        <form
+          class="contact-form"
+          onsubmit="event.preventDefault(); this.querySelector('.sent').classList.add('show');">
+          <h3 class="mono text-center mb-4">Contact Me</h3>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <input
+                class="form-control"
+                placeholder="your_name"
+                required>
+            </div>
+
+            <div class="col-md-6">
+              <input
+                type="email"
+                class="form-control"
+                placeholder="you@email.com"
+                required>
+            </div>
+
+            <div class="col-12">
+              <input
+                class="form-control"
+                placeholder="subject">
+            </div>
+
+            <div class="col-12">
+              <textarea
+                class="form-control"
+                rows="6"
+                placeholder="// type your message here..."></textarea>
+            </div>
+
+            <div class="col-12">
+              <button class="btn btn-lilac px-4">
+                send message →
+              </button>
+
+              <p class="sent mono mt-3">
+                ✔ message sent. catch you in the inbox!
+              </p>
+            </div>
+          </div>
+        </form>
+      </div>
+
+    </div>
+
+    <div class="socials mono mt-5">
+      <a href="https://github.com/batoonjean-blip" target="_blank">
+        GitHub
+      </a>
+      *
+
+      <a href="https://www.instagram.com/your_username" target="_blank">
+        Instagram
+      </a>
+      *
+
+      <a href="mailto:your_email@gmail.com">
+        Email
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<footer class="foot mono">
+  <div class="container d-flex flex-wrap justify-content-between gap-2">
+    <span>© 2026 — built with 💜 + bootstrap</span>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
